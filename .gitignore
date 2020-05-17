@@ -29,6 +29,7 @@ mvnw*
 /nbdist/
 /.nb-gradle/
 build/
+/test/
 
 ### VS Code ###
 .vscode/

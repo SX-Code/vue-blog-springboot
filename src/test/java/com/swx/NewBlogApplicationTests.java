@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.swx.blog.pojo.Blog;
+import com.swx.blog.pojo.Type;
 import com.swx.blog.pojo.vo.admin.AdminBlogVO;
 import com.swx.blog.service.BlogService;
+import com.swx.blog.service.TypeService;
 import com.swx.blog.utils.SHA256Utils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,19 @@ class NewBlogApplicationTests {
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private TypeService typeService;
+
+    @Test
+    void testTypeService() {
+//        Type type = new Type();
+//        type.setId(20L);
+//        boolean b = typeService.updateById(type);
+//        System.out.println(b);
+        boolean b = typeService.removeById(20);
+        System.out.println(b);
+    }
 
     @Test
     void contextLoads() {

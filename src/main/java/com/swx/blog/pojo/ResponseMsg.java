@@ -14,13 +14,15 @@ public class ResponseMsg {
 
     public static ResponseMsg success(){
         ResponseMsg msg = new ResponseMsg();
-        msg.setCode(20000);
+        msg.setMessage("操作成功"); // 成功的默认消息
+        msg.setCode(20000); // 成功的默认code
         return msg;
     }
 
     public static ResponseMsg fail() {
         ResponseMsg msg = new ResponseMsg();
-        msg.setCode(20001);
+        msg.setMessage("操作失败"); // 成功的默认消息
+        msg.setCode(20001);  // 成功的默认code
         msg.setData(null);
         return msg;
     }

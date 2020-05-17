@@ -2,6 +2,9 @@ package com.swx.blog.mapper;
 
 import com.swx.blog.pojo.Tag;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.swx.blog.pojo.vo.admin.TagVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TagMapper extends BaseMapper<Tag> {
 
+    List<TagVo> listTagVo();
 }

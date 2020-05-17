@@ -12,4 +12,11 @@
         <result column="version" property="version" />
     </resultMap>
 
+    <select id="listTypeVo" resultType="com.swx.blog.pojo.vo.admin.TypeVo">
+        select ty.*,count(bl.id) blog_num
+        from t_type ty left join t_blog bl on ty.id=bl.type_id
+        where ty.deleted = 0
+        group by ty.id
+    </select>
+
 </mapper>
