@@ -1,6 +1,9 @@
 package com.swx.blog.pojo.vo.admin;
 
 import lombok.Data;
+
+import java.time.LocalDateTime;
+
 @Data
 public class AdminBlogVO {
 
@@ -14,7 +17,7 @@ public class AdminBlogVO {
 
     private Boolean published;
 
-    private Integer updateTime;
+    private LocalDateTime updateTime;
 
 
 }

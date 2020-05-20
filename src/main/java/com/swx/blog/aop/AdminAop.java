@@ -29,12 +29,17 @@ public class AdminAop {
             Boolean flag = beforePoint(joinPoint);
             return joinPoint.proceed();
         } catch (Throwable throwable) {
-            return ResponseMsg.fail().setCode(50004).setMessage("出现意外，请重新登录");
+            System.out.println(throwable);
+            if("用户未登录".equals(throwable.getMessage())){
+                return ResponseMsg.fail().setCode(50004).setMessage("出现意外，请重新登录");
+            }
+            throw new RuntimeException(throwable.getMessage());
         }
     }
 
     private Boolean beforePoint(ProceedingJoinPoint joinPoint) throws Exception{
         ServletRequestAttributes ra =  (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        assert ra != null;
         HttpServletRequest request = ra.getRequest();
 
         HttpSession session = request.getSession();

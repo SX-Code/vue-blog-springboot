@@ -3,6 +3,8 @@ package com.swx.blog.pojo;
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -48,13 +50,14 @@ public class Blog implements Serializable {
     /**
      * 描述
      */
+    @TableField(value = "`describe`")
     private String describe;
 
     /**
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private Integer createTime;
+    private LocalDateTime createTime;
 
     /**
      * 首图
@@ -90,7 +93,7 @@ public class Blog implements Serializable {
      * 更新时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Integer updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 文章浏览数
@@ -110,6 +113,7 @@ public class Blog implements Serializable {
     /**
      * 喜欢数
      */
+    @TableField(value = "`like`")
     private Integer like;
 
     /**

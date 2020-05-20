@@ -1,4 +1,4 @@
-package com.swx.blog.controller;
+package com.swx.blog.controller.admin;
 
 
 import com.swx.blog.pojo.ResponseMsg;
@@ -16,11 +16,14 @@ import java.util.List;
  * @since 2020-05-09
  */
 @RestController
-@RequestMapping("/blog/tag")
+@RequestMapping("/admin/tag")
 public class TagController {
 
-    @Autowired
-    private TagService tagService;
+    private final TagService tagService;
+
+    public TagController(TagService tagService) {
+        this.tagService = tagService;
+    }
 
     @GetMapping("/list")
     public ResponseMsg list(){

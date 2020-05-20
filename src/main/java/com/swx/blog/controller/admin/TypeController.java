@@ -1,4 +1,4 @@
-package com.swx.blog.controller;
+package com.swx.blog.controller.admin;
 
 
 import com.swx.blog.pojo.ResponseMsg;
@@ -8,6 +8,7 @@ import com.swx.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,11 +20,14 @@ import java.util.List;
  * @since 2020-05-09
  */
 @RestController
-@RequestMapping("/blog/type")
+@RequestMapping("/admin/type")
 public class TypeController {
 
-    @Autowired
-    private TypeService typeService;
+    private final TypeService typeService;
+
+    public TypeController(TypeService typeService) {
+        this.typeService = typeService;
+    }
 
     @GetMapping("/list")
     public ResponseMsg list(){
