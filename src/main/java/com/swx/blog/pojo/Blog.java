@@ -133,4 +133,7 @@ public class Blog implements Serializable {
     @Version
     private Integer version;
 
+    @TableField(exist = false)
+    private Long[] tags;
+
 }

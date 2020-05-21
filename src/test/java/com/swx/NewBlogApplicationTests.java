@@ -8,6 +8,7 @@ import com.swx.blog.pojo.Blog;
 import com.swx.blog.pojo.Type;
 import com.swx.blog.pojo.vo.admin.AdminBlogVO;
 import com.swx.blog.service.BlogService;
+import com.swx.blog.service.BlogTagsService;
 import com.swx.blog.service.TypeService;
 import com.swx.blog.utils.SHA256Utils;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StringUtils;
 
+import java.util.HashSet;
 import java.util.List;
 
 @SpringBootTest
@@ -28,6 +30,33 @@ class NewBlogApplicationTests {
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private BlogTagsService blogTagsService;
+
+    @Test
+    void test() {
+        Long[] tags = new Long[]{1L,2L,3L};
+        blogTagsService.handlerTags(tags,4L);
+    }
+
+    @Test
+    void testSet(){
+        HashSet<Integer> result1 = new HashSet<>();
+        HashSet<Integer> result2 = new HashSet<>();
+
+        result1.add(1);
+        result1.add(2);
+        result1.add(3);
+
+        result2.add(3);
+        result2.add(4);
+
+//        result1.removeAll(result2);
+//        System.out.println("删除"+result1);
+        result2.removeAll(result1);
+        System.out.println("增加"+result2);
+    }
 
     @Test
     void testTypeService() {

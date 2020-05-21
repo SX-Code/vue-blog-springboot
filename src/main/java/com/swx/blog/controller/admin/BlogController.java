@@ -2,12 +2,16 @@ package com.swx.blog.controller.admin;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.swx.blog.pojo.Blog;
 import com.swx.blog.pojo.ResponseMsg;
+import com.swx.blog.pojo.Tag;
 import com.swx.blog.pojo.vo.admin.AdminBlogVO;
 import com.swx.blog.service.BlogService;
+import com.swx.blog.service.BlogTagsService;
+import com.swx.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +28,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 public class BlogController {
     private final BlogService blogService;
-
-    public BlogController(BlogService blogService) {
+    private final BlogTagsService blogTagsService;
+    public BlogController(BlogService blogService, BlogTagsService blogTagsService) {
         this.blogService = blogService;
+        this.blogTagsService = blogTagsService;
     }
 
     @PutMapping("/blog/{id}")
@@ -55,9 +60,11 @@ public class BlogController {
     @PostMapping("/blog")
     public ResponseMsg post(@RequestBody Blog blog) {
         boolean b = blogService.saveOrUpdate(blog);
+        blogTagsService.handlerTags(blog.getTags(), blog.getId());
         if(b){
             return ResponseMsg.success().setData(null);
         }
+        System.out.println(blog);
         return ResponseMsg.fail();
     }
 
@@ -72,13 +79,14 @@ public class BlogController {
     public ResponseMsg listBlog(String title, Integer page, Integer size) {
         LambdaQueryWrapper<Blog> wrapper = new LambdaQueryWrapper<>();
         wrapper.like(!StringUtils.isEmpty(title),Blog::getTitle, title);
-        IPage<AdminBlogVO> ipage = blogService.listBlog(new Page<>(page, size),wrapper);
-        return ResponseMsg.success().setData(ipage).setMessage("获取成功");
+        IPage<AdminBlogVO> iPage = blogService.listBlog(new Page<>(page, size),wrapper);
+        return ResponseMsg.success().setData(iPage).setMessage("获取成功");
     }
 
     @GetMapping("/blog/{id}")
     public ResponseMsg getBlog(@PathVariable("id") Long id) {
         Blog blog = blogService.getById(id);
+        blog.setTags(blogTagsService.listTags(id));
         return ResponseMsg.success().setData(blog);
     }
 

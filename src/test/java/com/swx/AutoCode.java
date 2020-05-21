@@ -50,7 +50,7 @@ public class AutoCode {
 
         //策略配置
         StrategyConfig sc = new StrategyConfig();
-        sc.setInclude("t_blog","t_comment","t_tag","t_type","t_user")
+        sc.setInclude("t_blog_tags")
                 .setTablePrefix("t_")
                 .setNaming(NamingStrategy.underline_to_camel)
                 .setColumnNaming(NamingStrategy.underline_to_camel)

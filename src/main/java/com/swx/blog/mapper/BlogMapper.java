@@ -24,4 +24,6 @@ public interface BlogMapper extends BaseMapper<Blog> {
 
     IPage<AdminBlogVO> listBlog(Page<?> page,@Param(Constants.WRAPPER) LambdaQueryWrapper<Blog> wrapper);
 
+    @Select("select tag_id from t_blog_tags where blog_id = #{blogId}")
+    List<Long> listTagIds(Long blogId);
 }

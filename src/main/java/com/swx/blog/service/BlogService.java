@@ -20,5 +20,4 @@ import java.util.List;
 public interface BlogService extends IService<Blog> {
 
    IPage<AdminBlogVO> listBlog(Page<AdminBlogVO> page, LambdaQueryWrapper<Blog> wrapper);
-
 }
