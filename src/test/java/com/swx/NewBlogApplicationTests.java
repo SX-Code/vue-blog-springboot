@@ -70,16 +70,16 @@ class NewBlogApplicationTests {
 
     @Test
     void contextLoads() {
-        String query = "S";
-        LambdaQueryWrapper<Blog> wrapper = new LambdaQueryWrapper<>();
-        wrapper.like(!StringUtils.isEmpty(query),Blog::getTitle, query);
-        IPage<AdminBlogVO> iPage = blogService.listBlog(new Page<>(1, 3),wrapper);
-        iPage.getRecords().forEach(System.out::println);
+//        String query = "S";
+//        LambdaQueryWrapper<Blog> wrapper = new LambdaQueryWrapper<>();
+//        wrapper.like(!StringUtils.isEmpty(query),Blog::getTitle, query);
+//        IPage<AdminBlogVO> iPage = blogService.listBlog(new Page<>(1, 3),wrapper);
+//        iPage.getRecords().forEach(System.out::println);
 //        System.out.println("一共 "+ iPage.getPages() +" 页");
 //        System.out.println("一页显示 "+ iPage.getSize() + " 个");
 //        System.out.println("一共 " + iPage.getTotal() + " 条记录");
 //        System.out.println("当前第 " + iPage.getCurrent() + " 页");
-        System.out.println(SHA256Utils.getSHA256("123456"));
+//        System.out.println(SHA256Utils.getSHA256("123456"));
 //        List<Blog> list = blogService.list();
 //        list.forEach(System.out::println);
 

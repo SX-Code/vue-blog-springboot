@@ -1,6 +1,6 @@
 package com.swx.blog.mapper;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 public interface BlogMapper extends BaseMapper<Blog> {
 
-    IPage<AdminBlogVO> listBlog(Page<?> page,@Param(Constants.WRAPPER) LambdaQueryWrapper<Blog> wrapper);
+    IPage<AdminBlogVO> listBlog(Page<?> page, @Param(Constants.WRAPPER) QueryWrapper<Blog> wrapper);
 
     @Select("select tag_id from t_blog_tags where blog_id = #{blogId}")
     List<Long> listTagIds(Long blogId);

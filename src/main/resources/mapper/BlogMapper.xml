@@ -33,7 +33,6 @@
     <select id="listBlog" resultType="com.swx.blog.pojo.vo.admin.AdminBlogVO">
         select bl.id,bl.title,bl.type_id,bl.recommend,bl.published,bl.update_time,ty.name type_name
         from t_blog bl left join t_type ty on bl.type_id = ty.id  ${ew.customSqlSegment}
-        where bl.deleted = 0
     </select>
 
 </mapper>

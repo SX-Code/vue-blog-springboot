@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 public class BlogController {
     private final BlogService blogService;
     private final BlogTagsService blogTagsService;
+
     public BlogController(BlogService blogService, BlogTagsService blogTagsService) {
         this.blogService = blogService;
         this.blogTagsService = blogTagsService;
@@ -77,8 +78,10 @@ public class BlogController {
      */
     @GetMapping("/blog")
     public ResponseMsg listBlog(String title, Integer page, Integer size) {
-        LambdaQueryWrapper<Blog> wrapper = new LambdaQueryWrapper<>();
-        wrapper.like(!StringUtils.isEmpty(title),Blog::getTitle, title);
+        QueryWrapper<Blog> wrapper = new QueryWrapper<>();
+        wrapper.like(!StringUtils.isEmpty(title),"title", title)
+                .eq("bl.deleted",0)
+                .orderByDesc("update_time");
         IPage<AdminBlogVO> iPage = blogService.listBlog(new Page<>(page, size),wrapper);
         return ResponseMsg.success().setData(iPage).setMessage("获取成功");
     }
